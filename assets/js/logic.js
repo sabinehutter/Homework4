@@ -1,7 +1,7 @@
 // variables to keep track of quiz state
 var currentQuestionIndex = 0;
 var time = questions.length * 15;
-var timerId;
+var timerId = $("#time");
 
 // variables to reference DOM elements
 var questionsEl = $("#questions");
@@ -17,6 +17,9 @@ var startScreen = $("#start-screen");
 var questionScreen = $("#questions");
 var endScreen = $("#end-screen")
 
+// question screen variables
+var questionTitle = $("#question-title")
+var questionChoices = $("#choices")
 // sound effects
 var sfxRight = new Audio("assets/sfx/correct.wav");
 var sfxWrong = new Audio("assets/sfx/incorrect.wav");
@@ -25,22 +28,37 @@ function startQuiz() {
   // hide start screen
   startScreen.hide();
   // un-hide questions section
-  questionScreen.css("display", "show")
+  questionScreen.removeClass("hide")
   // start timer
+  var counter = setInterval(timer, 1000);
+  function timer(){
+    time--;
+    if (time <= 0){
+      clearInterval(counter)
+    }
+  }
 
   // show starting time
+timerId.text(time);
 
   getQuestion();
 }
 
 function getQuestion() {
   // get current question object from array
-
+  for (eachQuestion in questions ){
   // update title with current question
-
+    questionTitle.text((questions[eachQuestion].title))
   // clear out any old question choices
-
+    questionChoices.text("")
   // loop over choices
+  for (choices in (questions[eachQuestion].choices)){
+    // questionChoices.append($("<button> </button>"))
+    console.log(questions[eachQuestion].choices[choices])
+  }
+
+  
+  }
 
     // create new button for each choice
 
