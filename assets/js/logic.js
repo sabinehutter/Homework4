@@ -30,16 +30,12 @@ function startQuiz() {
   // un-hide questions section
   questionScreen.removeClass("hide")
   // start timer
-  var counter = setInterval(timer, 1000);
-  function timer(){
-    time--;
-    if (time <= 0){
-      clearInterval(counter)
-    }
-  }
+  // var counter = setInterval(timer, 1000);
 
-  // show starting time
-timerId.text(time);
+var timer = setInterval(function(){
+
+  clockTick()
+},1000);
 
   getQuestion();
 }
@@ -53,33 +49,50 @@ function getQuestion() {
     questionChoices.text("")
   // loop over choices
   for (choices in (questions[eachQuestion].choices)){
-    // questionChoices.append($("<button> </button>"))
-    console.log(questions[eachQuestion].choices[choices])
-  }
+        // create new button for each choice
+    var choiceButton = $("<button>" + questions[eachQuestion].choices[choices] + "</button>")
+          // attach click event listener to each choice
+  choiceButton.on("click", questionClick)
 
+  // display on the page
+  questionChoices.append(choiceButton)
+  }
   
   }
-
-    // create new button for each choice
-
-    // attach click event listener to each choice
-
-    // display on the page
 }
 
-function questionClick() {
+function questionClick(choiceClicked) {
   // check if user guessed wrong
-    // penalize time
+  var userAnswer = $(this).text()
+  var questionTitle2 = questionTitle.text()
 
-    // display new time on page
+for (question in questions)  {
+  if (questions[question].title === questionTitle2){
 
-    // play "wrong" sound effect
-
+  
+if (questions[question].answer === userAnswer){
   // else 
     // play "right" sound effect
+    var audio = new Audio('assets/sfx/correct.wav');
+      audio.play()
+      feedbackEl.append("Correct")
+      feedbackEl.removeClass("hide")
+      flashCorrect()
 
+}
+else{
+      // penalize time
+      time = time - 10
+      // display new time on page
+      timerId.text(time);
+          // play "wrong" sound effect
+      var audio = new Audio('assets/sfx/incorrect.wav');
+      audio.play()
+      flashWrong()
 
-  // flash right/wrong feedback on page for half a second
+}
+}
+}
 
   // move to next question
 
@@ -101,6 +114,13 @@ function quizEnd() {
 
 function clockTick() {
   // update time
+if (time == -1){
+  clearTimeout()
+}
+else {
+  timerId.text(time);
+  time--
+}
 
   // check if user ran out of time
 }
@@ -122,6 +142,9 @@ function checkForEnter(event) {
   // check if event key is enter
     // saveHighscore
 }
+
+  
+
 
 // user clicks button to submit initials
 submitBtn.onclick = saveHighscore;
