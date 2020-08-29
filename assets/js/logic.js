@@ -1,7 +1,8 @@
 // variables to keep track of quiz state
 var currentQuestionIndex = 0;
 var time = questions.length * 15;
-var timerId = $("#time");
+var timerId  ;
+var score = 0;
 
 // variables to reference DOM elements
 var questionsEl = $("#questions");
@@ -11,6 +12,7 @@ var submitBtn = $("#submit");
 var startBtn = $("#start");
 var initialsEl = $("#initials");
 var feedbackEl = $("#feedback");
+var finalScore = $("#final-score")
 
 // variables for screen
 var startScreen = $("#start-screen");
@@ -32,114 +34,128 @@ function startQuiz() {
   // start timer
   // var counter = setInterval(timer, 1000);
 
-var timer = setInterval(function(){
+  timerId = setInterval(function () {
 
-  clockTick()
-},1000);
+    clockTick()
+  }, 1000);
 
   getQuestion();
 }
 
 function getQuestion() {
   // get current question object from array
-  for (eachQuestion in questions ){
-  // update title with current question
-    questionTitle.text((questions[eachQuestion].title))
-  // clear out any old question choices
-    questionChoices.text("")
-  // loop over choices
-  for (choices in (questions[eachQuestion].choices)){
-        // create new button for each choice
-    var choiceButton = $("<button>" + questions[eachQuestion].choices[choices] + "</button>")
-          // attach click event listener to each choice
-  choiceButton.on("click", questionClick)
 
-  // display on the page
-  questionChoices.append(choiceButton)
+  // update title with current question
+  questionTitle.text((questions[currentQuestionIndex].title))
+  // clear out any old question choices
+  questionChoices.text("")
+  // loop over choices
+  for (choices in (questions[currentQuestionIndex].choices)) {
+    // create new button for each choice
+    var choiceButton = $("<button>" + questions[currentQuestionIndex].choices[choices] + "</button>")
+    // attach click event listener to each choice
+    choiceButton.on("click", questionClick)
+
+    // display on the page
+    questionChoices.append(choiceButton)
   }
-  
-  }
+
+
 }
 
-function questionClick(choiceClicked) {
+function questionClick() {
   // check if user guessed wrong
   var userAnswer = $(this).text()
-  var questionTitle2 = questionTitle.text()
 
-for (question in questions)  {
-  if (questions[question].title === questionTitle2){
 
-  
-if (questions[question].answer === userAnswer){
-  // else 
+  if (questions[currentQuestionIndex].answer === userAnswer) {
+    // else 
     // play "right" sound effect
-    var audio = new Audio('assets/sfx/correct.wav');
-      audio.play()
-      feedbackEl.append("Correct")
-      feedbackEl.removeClass("hide")
-}
-else{
-      // penalize time
-      time = time - 10
-      // display new time on page
-      timerId.text(time);
-          // play "wrong" sound effect
-      var audio = new Audio('assets/sfx/incorrect.wav');
-      audio.play()
-}
-}
-}
-
+    sfxRight.play()
+    feedbackEl.text("Correct") 
+    feedbackEl.removeClass("hide")
+    setTimeout(function () {
+      feedbackEl.addClass("hide")
+    }, 500);
   // move to next question
+    currentQuestionIndex++
+    score++
 
+  } else {
+    // penalize time
+    time = time - 10
+    // display new time on page
+    timerEl.text(time);
+    // play "wrong" sound effect
+    sfxWrong.play()
+    feedbackEl.text("Incorrect") 
+    feedbackEl.removeClass("hide")
+    setTimeout(function () {
+      feedbackEl.addClass("hide")
+    }, 500);
+      // move to next question
+    currentQuestionIndex++
+
+  }
   // check if we've run out of questions
-    // quizEnd
+  console.log(currentQuestionIndex)
+console.log(questions.length)
+
+  if (currentQuestionIndex === questions.length){
+      // quizEnd
+    quizEnd()
+  }
   // else 
-    // getQuestion
+  else{
+    getQuestion()
+
+  }
+
 }
 
 function quizEnd() {
   // stop timer
+  clearInterval(timerId)
 
   // show end screen
+  endScreen.removeClass("hide")
 
   // show final score
-
+  finalScore.text(score);
+  
   // hide questions section
+  questionScreen.addClass("hide")
 }
 
 function clockTick() {
   // update time
-if (time == -1){
-  clearTimeout()
-}
-else {
-  timerId.text(time);
   time--
-}
-
+  timerEl.text(time);
   // check if user ran out of time
+  if (time === 0){
+    quizEnd()
+  }
 }
 
 function saveHighscore() {
   // get value of input box
 
   // make sure value wasn't empty
-    // get saved scores from localstorage, or if not any, set to empty array
+  // get saved scores from localstorage, or if not any, set to empty array
 
-    // format new score object for current user
+  // format new score object for current user
 
-    // save to localstorage
+  // save to localstorage
 
-    // redirect to next page
+  // redirect to next page
 }
 
 function checkForEnter(event) {
   // check if event key is enter
-    // saveHighscore
+  // saveHighscore
 }
 
-  
+
 
 
 // user clicks button to submit initials
