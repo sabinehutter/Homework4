@@ -77,8 +77,6 @@ if (questions[question].answer === userAnswer){
       audio.play()
       feedbackEl.append("Correct")
       feedbackEl.removeClass("hide")
-      flashCorrect()
-
 }
 else{
       // penalize time
@@ -88,8 +86,6 @@ else{
           // play "wrong" sound effect
       var audio = new Audio('assets/sfx/incorrect.wav');
       audio.play()
-      flashWrong()
-
 }
 }
 }
