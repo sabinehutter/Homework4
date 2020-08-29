@@ -139,6 +139,9 @@ function clockTick() {
 
 function saveHighscore() {
   // get value of input box
+var userInitials = this
+
+console.log(userInitials)
 
   // make sure value wasn't empty
   // get saved scores from localstorage, or if not any, set to empty array
@@ -159,7 +162,7 @@ function checkForEnter(event) {
 
 
 // user clicks button to submit initials
-submitBtn.onclick = saveHighscore;
+submitBtn.on("click",saveHighscore);
 
 // user clicks button to start quiz
 startBtn.on("click", startQuiz);
