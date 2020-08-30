@@ -1,7 +1,7 @@
 // variables to keep track of quiz state
 var currentQuestionIndex = 0;
 var time = questions.length * 15;
-var timerId  ;
+var timerId;
 var score = 0;
 
 // variables to reference DOM elements
@@ -25,6 +25,10 @@ var questionChoices = $("#choices")
 // sound effects
 var sfxRight = new Audio("assets/sfx/correct.wav");
 var sfxWrong = new Audio("assets/sfx/incorrect.wav");
+
+// scoring
+var scoresDictionary = {}
+
 
 function startQuiz() {
   // hide start screen
@@ -72,12 +76,12 @@ function questionClick() {
     // else 
     // play "right" sound effect
     sfxRight.play()
-    feedbackEl.text("Correct") 
+    feedbackEl.text("Correct")
     feedbackEl.removeClass("hide")
     setTimeout(function () {
       feedbackEl.addClass("hide")
     }, 500);
-  // move to next question
+    // move to next question
     currentQuestionIndex++
     score++
 
@@ -88,25 +92,23 @@ function questionClick() {
     timerEl.text(time);
     // play "wrong" sound effect
     sfxWrong.play()
-    feedbackEl.text("Incorrect") 
+    feedbackEl.text("Incorrect")
     feedbackEl.removeClass("hide")
     setTimeout(function () {
       feedbackEl.addClass("hide")
     }, 500);
-      // move to next question
+    // move to next question
     currentQuestionIndex++
 
   }
   // check if we've run out of questions
-  console.log(currentQuestionIndex)
-console.log(questions.length)
 
-  if (currentQuestionIndex === questions.length){
-      // quizEnd
+  if (currentQuestionIndex === questions.length) {
+    // quizEnd
     quizEnd()
   }
   // else 
-  else{
+  else {
     getQuestion()
 
   }
@@ -122,7 +124,7 @@ function quizEnd() {
 
   // show final score
   finalScore.text(score);
-  
+
   // hide questions section
   questionScreen.addClass("hide")
 }
@@ -132,25 +134,38 @@ function clockTick() {
   time--
   timerEl.text(time);
   // check if user ran out of time
-  if (time === 0){
+  if (time === 0) {
     quizEnd()
   }
 }
 
+var scoresDictionary = {}
+
 function saveHighscore() {
   // get value of input box
-var userInitials = this
-
-console.log(userInitials)
+  var userInitials = initialsEl.val()
 
   // make sure value wasn't empty
+  if (initialsEl.val() === "") {
+    alert("Please Enter Initials in Entry Box")
+  }
   // get saved scores from localstorage, or if not any, set to empty array
+  var scores = JSON.parse(localStorage.getItem("scores"));
 
-  // format new score object for current user
+  if (scores === "") {
+    localStorage.setItem("scores", {});
+  }
+  scoresDictionary[userInitials] = finalScore.text()
 
-  // save to localstorage
+
+
+  var new_array = Object.assign({}, scores,scoresDictionary)
+
+  localStorage.setItem("scores", JSON.stringify(new_array));
+
 
   // redirect to next page
+  window.location.replace("highscores.html")
 }
 
 function checkForEnter(event) {
@@ -162,7 +177,7 @@ function checkForEnter(event) {
 
 
 // user clicks button to submit initials
-submitBtn.on("click",saveHighscore);
+submitBtn.on("click", saveHighscore);
 
 // user clicks button to start quiz
 startBtn.on("click", startQuiz);
