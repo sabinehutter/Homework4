@@ -2,7 +2,7 @@
 
 # Come Play a Quick Web Developer Quiz!
 
-You can ~play this application at : https://sabinehutter.github.io/Web-Dev-Quiz/
+This application is hosted on Github Pages and can be ~play at : https://sabinehutter.github.io/Web-Dev-Quiz/
 
 ## Technologies Used 
 
