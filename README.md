@@ -14,7 +14,7 @@ This is a fun 5 question quiz testing your knowledge about web development!
 
 When you open the application you will be greeted with the home page.
 
-![Image of Homepage](https://octodex.github.com/images/yaktocat.png)
+![Image of Homepage](https://sabinehutter.github.io/Web-Dev-Quiz/Readme_Assets/Web-Dev-Quiz-Homepage.png)
 
 You will then be naviagated through the questions. As you answer the questions, you will hear a happy or angry sound depending whether you answer the question correctly! 
 ![Image of Questions](https://octodex.github.com/images/yaktocat.png)
