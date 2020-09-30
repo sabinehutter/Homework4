@@ -20,7 +20,7 @@ You will then be naviagated through the questions. As you answer the questions, 
 ![Image of Questions](https://sabinehutter.github.io/Web-Dev-Quiz/Readme_Assets/Web-Dev_Quiz-Questions.png)
 
 At the end you will be prompted to input your initials and submit them to the scoreboard! 
-![Image of Scoreboard](https://octodex.github.com/images/yaktocat.png)
+![Image of Scoreboard](https://sabinehutter.github.io/Web-Dev-Quiz/Readme_Assets/Web-Dev-Quiz-Scoreboard.png)
 
 
 ## Licensing & Contact Info
