@@ -12,11 +12,16 @@ This application was created using HTML, CSS, and Javascript.
 
 This is a fun 5 question quiz testing your knowledge about web development! 
 
-When you open the application you will be greeted with the home page. 
+When you open the application you will be greeted with the home page.
+
+![Image of Homepage](https://octodex.github.com/images/yaktocat.png)
 
 You will then be naviagated through the questions. As you answer the questions, you will hear a happy or angry sound depending whether you answer the question correctly! 
+![Image of Questions](https://octodex.github.com/images/yaktocat.png)
 
 At the end you will be prompted to input your initials and submit them to the scoreboard! 
+![Image of Scoreboard](https://octodex.github.com/images/yaktocat.png)
+
 
 ## Licensing & Contact Info
 The licensing for this repo is MIT. 
