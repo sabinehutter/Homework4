@@ -1,42 +1,25 @@
-# 04 Web APIs: Code Quiz
 
-As you proceed in your career as a web developer, you will probably be asked to complete a coding assessment, which is typically a combination of multiple-choice questions and interactive challenges. Build a timed code quiz with multiple-choice questions. This app will run in the browser and feature dynamically updated HTML and CSS powered by your JavaScript code. It will also feature a clean and polished user interface and be responsive, ensuring that it adapts to multiple screen sizes.
 
-## User Story
+# Come Play a Quick Web Developer Quiz!
 
-```
-AS A coding bootcamp student
-I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
-SO THAT I can gauge my progress compared to my peers
-```
+You can ~play this application at : https://sabinehutter.github.io/Web-Dev-Quiz/
 
-## Acceptance Criteria
+## Technologies Used 
 
-```
-GIVEN I am taking a code quiz
-WHEN I click the start button
-THEN a timer starts and I am presented with a question
-WHEN I answer a question
-THEN I am presented with another question
-WHEN I answer a question incorrectly
-THEN time is subtracted from the clock
-WHEN all questions are answered or the timer reaches 0
-THEN the game is over
-WHEN the game is over
-THEN I can save my initials and score
-```
+This application was created using HTML, CSS, and Javascript. 
 
-The following animation demonstrates the application functionality:
+## What is the Web Developer Quiz??
 
-![code quiz](./Assets/04-web-apis-homework-demo.gif)
+This is a fun 5 question quiz testing your knowledge about web development! 
 
-### Review
+When you open the application you will be greeted with the home page. 
 
-You are required to submit the following for review:
+You will then be naviagated through the questions. As you answer the questions, you will hear a happy or angry sound depending whether you answer the question correctly! 
 
-* The URL of the functional, deployed application.
+At the end you will be prompted to input your initials and submit them to the scoreboard! 
 
-* The URL of the GitHub repository. Give the repository a unique name and include a README describing the project.
+## Licensing & Contact Info
+The licensing for this repo is MIT. 
 
-- - -
-© 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
+Feel free to contact the creator if there are any bugs or problems : SabineAHutter@gmail.com. 
+
